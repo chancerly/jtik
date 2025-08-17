@@ -504,14 +504,13 @@ bool ExitHook::Apply(lir::CodeIr* code_ir) {
     }
 
     dex::u2 regIndexMethodId;
-    auto nonePareRegCount = regThisObjIndex;
-    bool isVRegEnough = nonePareRegCount - reg_count >= 2; //can use v1 and v2 to store jmethod id?
+    bool isVRegEnough = regThisObjIndex >= (reg + reg_count -1 ) + 3;
     if (isVRegEnough) {
       regIndexMethodId = reg+reg_count;
     } else {
       // try reuse param
       int paramBegin = std::max(regThisObjIndex  + (isStatic ? 0 : 1), int(reg + reg_count));
-      if (paramBegin > ir_method->code->registers-2) {// pram not enough,then scratch
+      if (paramBegin > (int)(ir_method->code->registers)-2) {// pram not enough,then scratch
         auto scratch = paramBegin + 1 - (ir_method->code->registers-1);
         slicer::AllocateScratchRegs alloc_regs(scratch, false);
         alloc_regs.Apply(code_ir);

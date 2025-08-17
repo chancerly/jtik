@@ -52,13 +52,13 @@ static bool SetDebuggableRelease(bool allowDebug) {
         SetJdwpAllowedFn(allowDebug);
     }
 
-    auto (*setJavaDebuggableFn)(void *, bool) = reinterpret_cast<void (*)(void *, bool)>(
-            ::dlsym(dlHandler.GetHandle(), "_ZN3art7Runtime17SetJavaDebuggableEb"));
-    CHECK_NULL_RETURN_BOOL(setJavaDebuggableFn,"setJavaDebuggableFn get fail");
-    void **runtimeInstance_ = static_cast<void **>(
-            ::dlsym(dlHandler.GetHandle(), "_ZN3art7Runtime9instance_E"));
-    CHECK_NULL_RETURN_BOOL(runtimeInstance_,"runtime instance get fail");
-    setJavaDebuggableFn(*runtimeInstance_, allowDebug);
+//    auto (*setJavaDebuggableFn)(void *, bool) = reinterpret_cast<void (*)(void *, bool)>(
+//            ::dlsym(dlHandler.GetHandle(), "_ZN3art7Runtime17SetJavaDebuggableEb"));
+//    CHECK_NULL_RETURN_BOOL(setJavaDebuggableFn,"setJavaDebuggableFn get fail");
+//    void **runtimeInstance_ = static_cast<void **>(
+//            ::dlsym(dlHandler.GetHandle(), "_ZN3art7Runtime9instance_E"));
+//    CHECK_NULL_RETURN_BOOL(runtimeInstance_,"runtime instance get fail");
+//    setJavaDebuggableFn(*runtimeInstance_, allowDebug);
     return true;
 }
 
