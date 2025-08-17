@@ -15,7 +15,7 @@ repositories {
 
  ```gradle
 dependencies {
-    implementation 'com.github.chancerly:jtik:0.0.1-Beta'
+    implementation 'com.github.chancerly:jtik:0.0.1'
 }
 ```
 
